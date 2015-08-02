@@ -9,7 +9,7 @@
                 base = '_super_',
                 base_constructor = base.slice(0,-1),
                 base_regex = new RegExp(base_constructor);
-                
+
             for (name in this.prototype)
                 proto[name] = this.prototype[name];
 
@@ -29,11 +29,10 @@
                         };
                         proto[bname]._name = name;   
                     } else 
-                      proto[bname] = parent.prototype[name]; 
-                } else { 
+                        proto[bname] = parent.prototype[name]; 
+                } else  
                     if(!base_regex.test(name))
                         proto[name] = parent.prototype[name];
-                }
             }
 
             this.prototype = Object.create(proto);
@@ -45,7 +44,7 @@
         };
         return template.constructor;	
     };
-    
+
     if (typeof define === 'function' && define.amd) {
         define(function () { return createClass; });
     } else if (typeof module !== 'undefined' && module.exports){ 
