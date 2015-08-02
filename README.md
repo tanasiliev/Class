@@ -3,7 +3,6 @@ javascript class inheritance
 
 
 ````
-
 var Person = Class({
 	constructor: function(fname, lname){
         this.fname = fname;
@@ -11,10 +10,10 @@ var Person = Class({
 	},
 	prototype : {
 		introduce: function(){
-            return ["Hi my name is", this.fname, this.lname].join(" ");
+            return ["Hi my name is", this.fname, this.lname].join(' ');
 		},
         fullName : function(){
-            return [this.fname, this.lname].join(" ");  
+            return [this.fname, this.lname].join(' ');  
         }
 	}
 });
@@ -52,7 +51,7 @@ var Worker = Class({
 
 var instances = [
                 new Person('John', 'Smit'),
-                new Student('Victor', 'Matfield', 'Vic', "six grade"),
+                new Student('Victor', 'Matfield', 'Vic', 'six grade'),
                 new Worker('Mark', 'Fish', 'Feesh', 'final grade', 'footballer')
 ];
 
@@ -67,9 +66,9 @@ instances.forEach(function(instance){
     }
     console.log('\n')
 });
-
 ````
 Console output:
+
 ````
 Hi my name is John Smit
 
@@ -78,6 +77,5 @@ six grade
  
 Hi my name is Mark Fish  I'm a footballer
 Mark works as footballer
-
 ````
 
