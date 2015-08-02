@@ -47,15 +47,29 @@ var Worker = Class({
             return this._super_introduce() +  " I'm a " + this.profession; 	 
 		},
         fullName : function(){
-            return this._super_fullName() +  " I'm a " + this.profession; 
+            return this._super_fullName() +  " I'm a " + this.profession + '!';
         }
 	}
 }).inherit(Student);
 
+var Teacher = Class({
+	constructor: function(fname, lname, nickname, grade, profession, subject){
+	   this._super(fname, lname, nickname, grade); 
+	   this.profession = profession;
+       this.subject = subject    
+	},
+	prototype : {
+        introduce: function(){
+            return this._super_introduce() + ' and teach ' + this.subject + '!';
+		}
+	}
+}).inherit(Worker);
+
 var instances = [
                 new Person('John', 'Smit'),
                 new Student('Victor', 'Matfield', 'Vic', "six grade"),
-                new Worker('Mark', 'Fish', 'Feesh', 'final grade', 'footballer')
+                new Worker('Mark', 'Fish', 'Feesh', 'final grade', 'footballer'),
+                new Teacher('Greg', 'Graffin', 'Graff', 'final grade', 'teacher', 'chemistry')
 ];
 
 instances.forEach(function(instance){
@@ -68,6 +82,7 @@ instances.forEach(function(instance){
         console.log(instance.work())
         
     console.log('\n')    
+});
 ````
 Console output:
 
@@ -79,5 +94,7 @@ six grade
  
 Hi my name is Mark Fish Feesh I'm a footballer
 Mark works as footballer
+
+Hi my name is Greg Graffin Graff I'm a teacher and teach chemistry!
 ````
 

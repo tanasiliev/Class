@@ -3,41 +3,42 @@
     var createClass = function(template){
         template.constructor.prototype = template.prototype;
         template.constructor.inherit = function(parent){
-            var name,
-                sname,
+            var name, 
+                bname, 
                 proto = {},
-                _super = "_super_";
+                base = '_super_',
+                base_constructor = base.slice(0,-1),
+                base_regex = new RegExp(base_constructor);
                 
             for (name in this.prototype)
                 proto[name] = this.prototype[name];
 
             for (name in parent.prototype){   
-                if(name !== "_super" && this.prototype[name]){
-                    sname = _super + name;
-                    if(parent.prototype[sname]){
-                       var fun = function(){
-                            var name = arguments.callee._name;
-                            var sname = _super + name;
-                            var method = this[sname];
-                            this[sname] = parent.prototype[sname];
-                            var caller = parent.prototype[name].call(this);
-                            this[sname] = method;
-                            return caller;
+                if(name !== base_constructor && this.prototype[name]){
+                    bname = base + name;
+                    if(parent.prototype[bname]){
+                        proto[bname] = function(){
+                            var pMethod,
+                                name = arguments.callee._name,
+                                bname = base + name,
+                                cMethod = this[bname];
+                            this[bname] = parent.prototype[bname];
+                            pMethod = parent.prototype[name].call(this);
+                            this[bname] = cMethod;
+                            return pMethod;
                         };
-                        fun._name = name;
-                        proto[sname] = fun;   
-                        
+                        proto[bname]._name = name;   
                     } else 
-                      proto[sname] = parent.prototype[name]; 
+                      proto[bname] = parent.prototype[name]; 
                 } else { 
-                    if(!/_super_/.test(name))
+                    if(!base_regex.test(name))
                         proto[name] = parent.prototype[name];
                 }
             }
 
             this.prototype = Object.create(proto);
             this._constructor = parent;		
-            this.prototype._super = function(){
+            this.prototype[base_constructor] = function(){
                 arguments.callee.caller._constructor.apply(this, arguments); 
             };
             return template.constructor;
@@ -53,4 +54,3 @@
         global['Class'] = createClass;
     }
 })(this);
-
