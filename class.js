@@ -52,4 +52,5 @@
     } else { 
         global['Class'] = createClass;
     }
+    
 })(this);
