@@ -21,12 +21,12 @@ var Person = Class({
 var Student = Class({
 	constructor: function(fname, lname, nickname, grade){
 	    this._super(fname, lname);
-		this.nickname = nickname;
-        this.grade = grade;
+	    this.nickname = nickname;
+            this.grade = grade;
 	},
 	prototype : {
 		introduce: function(){
-            return this._super_introduce() +  " " + this.nickname; 	 
+            return this._super_introduce() +  ' ' + this.nickname; 	 
 		},
         getGrade: function() {
             return this.grade;
@@ -67,7 +67,7 @@ var Teacher = Class({
 
 var instances = [
                 new Person('John', 'Smit'),
-                new Student('Victor', 'Matfield', 'Vic', "six grade"),
+                new Student('Victor', 'Matfield', 'Vic', 'six grade'),
                 new Worker('Mark', 'Fish', 'Feesh', 'final grade', 'footballer'),
                 new Teacher('Greg', 'Graffin', 'Graff', 'final grade', 'teacher', 'chemistry')
 ];
