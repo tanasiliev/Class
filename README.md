@@ -13,7 +13,7 @@ var Person = Class({
             return ['Hi my name is', this.fname, this.lname].join(' ');
 		},
         fullName : function(){
-            return [this.fname, this.lname].join(' ');  
+            return this.fname + ' ' +  this.lname; 
         }
 	}
 });
