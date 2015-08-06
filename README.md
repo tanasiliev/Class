@@ -20,9 +20,9 @@ var Person = Class({
 
 var Student = Class({
 	constructor: function(fname, lname, nickname, grade){
-	    this._super(fname, lname);
-	    this.nickname = nickname;
-            this.grade = grade;
+	this._super(fname, lname);
+	this.nickname = nickname;
+	this.grade = grade;
 	},
 	prototype : {
 		introduce: function(){
